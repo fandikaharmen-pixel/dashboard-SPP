@@ -160,13 +160,15 @@ window.dash = (() => {
 .lp-legend i { width: 0.625rem; height: 0.625rem; border-radius: 2px; display: inline-block; }
 
 /* Pipeline bernomor */
-.lp-steps { list-style: none; margin: var(--cds-gap-md) 0 0; padding: 0; display: grid; gap: var(--cds-gap-sm); min-height: 4.5rem; }
-.lp-step { display: grid; grid-template-columns: 1.75rem minmax(7.5rem, 9.5rem) 1fr; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-caption); }
+.lp-tahap { display: grid; grid-template-columns: minmax(7rem, auto) 1fr; gap: var(--cds-gap-lg); align-items: center; margin-top: calc(-1 * var(--cds-gap-md)); padding-bottom: var(--cds-pad-lg); border-bottom: 1px solid var(--lp-rule); }
+.lp-tahap-h { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); margin: 0; }
+.lp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--cds-gap-lg); min-height: 1.75rem; }
+.lp-step { display: grid; grid-template-columns: 1.75rem 7.25rem 1fr; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-caption); }
 .lp-step b { width: 1.5rem; height: 1.5rem; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--lp-gold); color: var(--color-fg); font-weight: 500; font-size: 0.75rem; }
 .lp-step-name { color: var(--color-fg); }
 .lp-step-bar { position: relative; height: 1.5rem; background: color-mix(in srgb, var(--color-fg) 6%, transparent); border-radius: 4px; }
 .lp-step-bar i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--lp-setuju); }
-.lp-step-val { white-space: nowrap; color: var(--color-fg-muted); margin-left: var(--cds-gap-xs); }
+.lp-step-val { white-space: nowrap; color: var(--color-fg-muted); margin-left: var(--cds-gap-xs); min-width: 5.75rem; text-align: right; }
 .lp-step-row { display: flex; align-items: center; gap: var(--cds-gap-sm); }
 .lp-step-row .lp-step-bar { flex: 1; }
 
@@ -197,6 +199,8 @@ window.dash = (() => {
   .lp-kop { padding: var(--cds-pad-lg); }
   .lp-pos { border-right: 0; margin-right: 0; border-bottom: 1px solid var(--lp-rule); padding-right: 0; }
   .lp-pos:last-child { border-bottom: 0; }
+  .lp-tahap { grid-template-columns: 1fr; gap: var(--cds-gap-sm); }
+  .lp-steps { grid-template-columns: 1fr; gap: var(--cds-gap-sm); }
   .lp-step { grid-template-columns: 1.75rem 1fr; }
   .lp-step-row { grid-column: 1 / -1; }
 }
@@ -248,18 +252,17 @@ window.dash = (() => {
     </div>
   </section>
 
-  <div class="lp-duo">
-    <section class="lp-sec" id="pipeline">
-      <h2 class="lp-h">Tahapan SPP</h2>
-      <ol class="lp-steps dash-skeleton" id="lp-steps" data-source="ringkasan"></ol>
-    </section>
-    <section class="lp-sec" id="bulanan">
-      <h2 class="lp-h">Arus nilai per bulan</h2>
-      <p class="lp-note">Nilai diajukan menurut bulan tanggal SPP; nilai disetujui menurut bulan terbit RKP.</p>
-      <div class="lp-legend" id="lp-bul-leg"></div>
-      <div class="lp-chart dash-skeleton" id="lp-bul" data-source="per_bulan"></div>
-    </section>
-  </div>
+  <section class="lp-tahap" id="pipeline" aria-label="Tahapan SPP">
+    <h2 class="lp-tahap-h">Tahapan SPP</h2>
+    <ol class="lp-steps dash-skeleton" id="lp-steps" data-source="ringkasan"></ol>
+  </section>
+
+  <section class="lp-sec" id="bulanan">
+    <h2 class="lp-h">Arus nilai per bulan</h2>
+    <p class="lp-note">Nilai diajukan menurut bulan tanggal SPP; nilai disetujui menurut bulan terbit RKP.</p>
+    <div class="lp-legend" id="lp-bul-leg"></div>
+    <div class="lp-chart dash-skeleton" id="lp-bul" data-source="per_bulan"></div>
+  </section>
 
   <section class="lp-sec" id="per-ruas">
     <h2 class="lp-h">Nilai per ruas PSN</h2>
