@@ -160,7 +160,7 @@ window.dash = (() => {
 .lp-legend i { width: 0.625rem; height: 0.625rem; border-radius: 2px; display: inline-block; }
 
 /* Pipeline bernomor */
-.lp-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cds-gap-sm); min-height: 15rem; }
+.lp-steps { list-style: none; margin: var(--cds-gap-md) 0 0; padding: 0; display: grid; gap: var(--cds-gap-sm); min-height: 4.5rem; }
 .lp-step { display: grid; grid-template-columns: 1.75rem minmax(7.5rem, 9.5rem) 1fr; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-caption); }
 .lp-step b { width: 1.5rem; height: 1.5rem; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--lp-gold); color: var(--color-fg); font-weight: 500; font-size: 0.75rem; }
 .lp-step-name { color: var(--color-fg); }
@@ -251,7 +251,6 @@ window.dash = (() => {
   <div class="lp-duo">
     <section class="lp-sec" id="pipeline">
       <h2 class="lp-h">Tahapan SPP</h2>
-      <p class="lp-note">Berapa SPP sudah sampai di tiap tahap, dari seluruh SPP masuk. Pencatatan SPERS dan SP2D di sheet tampak belum lengkap untuk SPP yang lebih baru.</p>
       <ol class="lp-steps dash-skeleton" id="lp-steps" data-source="ringkasan"></ol>
     </section>
     <section class="lp-sec" id="bulanan">
@@ -522,10 +521,7 @@ window.LP = (() => {
     box.classList.remove('dash-skeleton');
     const r = d.data.find((x) => x.jenis === LP.jenis() && x.ruas === LP.ruas());
     if (!r) return;
-    const steps = [
-      ['SPP masuk', 'jml_spp'], ['Selesai diproses', 'jml_selesai'], ['RKP terbit', 'jml_rkp'],
-      ['SPERS terbit', 'jml_spers'], ['SP2D tercatat', 'jml_sp2d'],
-    ];
+    const steps = [['SPP masuk', 'jml_spp'], ['Selesai diproses', 'jml_selesai']];
     const max = r.jml_spp || 1;
     box.replaceChildren(...steps.map(([name, f], i) => {
       const li = document.createElement('li'); li.className = 'lp-step';
